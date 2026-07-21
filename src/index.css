@@ -30,20 +30,91 @@
   color: white;
 }
 
-/* Smooth animations */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
+/* ===== ANIMATED GRADIENT BACKGROUND ===== */
+@keyframes bgShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animated-bg {
+  background: linear-gradient(-45deg, #07060f, #120a2a, #0d0a1a, #07060f);
+  background-size: 400% 400%;
+  animation: bgShift 20s ease infinite;
+}
+
+/* Floating background orbs */
+@keyframes floatOrb1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.1); }
+  66% { transform: translate(-20px, 25px) scale(0.95); }
+}
+
+@keyframes floatOrb2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-30px, 35px) scale(1.05); }
+  66% { transform: translate(25px, -20px) scale(0.9); }
+}
+
+/* ===== GLASSMORPHISM CARDS ===== */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 8px 40px rgba(139, 92, 246, 0.08);
+  transform: translateY(-1px);
+}
+
+.glass-card-strong {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== LOGO PULSE GLOW ===== */
+@keyframes logoPulse {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(139, 92, 246, 0.15), 0 0 36px rgba(139, 92, 246, 0.05);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    box-shadow: 0 0 28px rgba(139, 92, 246, 0.3), 0 0 56px rgba(139, 92, 246, 0.12), 0 0 72px rgba(139, 92, 246, 0.05);
   }
 }
 
-.animate-in {
-  animation: fade-in-up 0.3s ease-out;
+.logo-glow {
+  animation: logoPulse 3s ease-in-out infinite;
+}
+
+/* ===== TAB SLIDE INDICATOR ===== */
+.tab-indicator {
+  position: absolute;
+  bottom: 2px;
+  height: 2.5px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #a78bfa, #e879f9);
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1), width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== BUTTON MICRO-INTERACTIONS ===== */
+button {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:hover:not(:disabled):not(.no-scale):not(.sr-only) {
+  transform: scale(1.04);
+}
+
+button:active:not(:disabled):not(.no-scale):not(.sr-only) {
+  transform: scale(0.96);
 }
 
 /* Range input styling */
@@ -123,11 +194,6 @@ select option {
   color: white;
 }
 
-/* Smooth transitions for interactive elements */
-button, a {
-  transition: all 0.2s ease;
-}
-
 /* Pre element for ASCII art */
 pre {
   -webkit-font-smoothing: none;
@@ -144,3 +210,30 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fade-in-up 0.3s ease-out;
+}
+
+@keyframes previewIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.preview-in {
+  animation: previewIn 0.4s ease-out;
+}
+
+

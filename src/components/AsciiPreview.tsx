@@ -165,8 +165,9 @@ pre { color: #e0e0e0; font-family: 'Courier New', monospace; font-size: 10px; li
         {/* Content */}
         <div className="overflow-auto max-h-[500px] p-4 scrollbar-thin">
           <pre
+            key={art ? art.slice(0, 50) : "empty"}
             ref={preRef}
-            className="leading-tight"
+            className="leading-tight preview-in"
             style={{
               fontFamily: "'JetBrains Mono', 'Courier New', monospace",
               fontSize: `${fontSize}px`,
